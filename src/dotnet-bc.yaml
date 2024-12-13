@@ -1,0 +1,25 @@
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: mydotnet-60
+  labels:
+    app: mydotnet-60
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/marbe/bc-dotnet-60
+  strategy:
+    type: Docker                      
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+      from:
+        kind: ImageStreamTag
+        name: dotnet-60:6.0-55
+  output:
+    to:
+      kind: ImageStreamTag
+      name: mydotnet-60:latest
+  triggers:
+  - type: ImageChange

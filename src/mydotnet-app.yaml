@@ -1,0 +1,18 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydotnet-60
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mydotnet-60
+  template:
+    metadata:
+      labels:
+        app: mydotnet-60
+    spec:
+      containers:
+      - name: mydotnet-60
+        image: mydotnet-60:latest
